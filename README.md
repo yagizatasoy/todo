@@ -37,7 +37,7 @@ make migration
 
 To insert mock data:
 ```bash
-make fixture
+make fixtures
 ```
 
 To Fetch tasks via Command:
