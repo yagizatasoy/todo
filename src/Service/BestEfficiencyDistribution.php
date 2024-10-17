@@ -19,6 +19,7 @@ class BestEfficiencyDistribution implements TaskDistributionStrategy
         $dailyWorkHours = array_fill(0, count($developers), 0);
         $developerIndex = 0;
         $taskLockedToDeveloper = null;
+        $developerMaxDays = array_fill(0, count($developers), 1);
 
         while (!empty($tasks)) {
             if ($taskLockedToDeveloper === null) {
@@ -67,11 +68,17 @@ class BestEfficiencyDistribution implements TaskDistributionStrategy
                     if ($developerIndex == 0) {
                         $day++;
                         $dailyWorkHours = array_fill(0, count($developers), 0);
+
+                        foreach ($developerMaxDays as &$maxDay) {
+                            $maxDay = max($maxDay, $day);
+                        }
                     }
                 }
+                $developerMaxDays[$developerIndex] = max($developerMaxDays[$developerIndex], $day);
             }
         }
 
-        return $assignments;
+        $totalDays = max($developerMaxDays);
+        return ['assignments' => $assignments, 'totalDays' => $totalDays];
     }
 }

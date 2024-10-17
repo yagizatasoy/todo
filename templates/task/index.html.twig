@@ -18,7 +18,7 @@
         <thead class="thead-dark">
         <tr>
             <th>Developer</th>
-            <th>Day</th>
+            <th>Work Day</th>
             <th>Provider Name</th>
             <th>Task ID</th>
             <th>Task Difficulty</th>
@@ -43,6 +43,9 @@
                     {% endfor %}
                 {% endfor %}
             {% endfor %}
+            <tr class="total-days">
+                <td colspan="7" class="text-center">Total Days Required: {{ totalDays }}</td>
+            </tr>
         {% endif %}
         </tbody>
     </table>

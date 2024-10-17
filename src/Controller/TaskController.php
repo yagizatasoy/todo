@@ -16,6 +16,6 @@ class TaskController extends AbstractController
      */
     public function index(): Response
     {
-        return $this->render('task/index.html.twig', ['assignments' => $this->taskService->distributeTasks()]);
+        return $this->render('task/index.html.twig', $this->taskService->distributeTasks());
     }
 }
