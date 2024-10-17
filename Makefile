@@ -1,7 +1,8 @@
 DOCKER_DIR=docker
 
 up:
-	docker-compose -f $(DOCKER_DIR)/docker-compose.yaml up -d
+	docker-compose -f $(DOCKER_DIR)/docker-compose.yaml up -d && \
+    docker-compose -f $(DOCKER_DIR)/docker-compose.yaml exec php composer install
 
 init-migration:
 	docker-compose -f $(DOCKER_DIR)/docker-compose.yaml exec php php bin/console make:migration
