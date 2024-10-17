@@ -1,0 +1,39 @@
+services:
+  mysql:
+    container_name: mysql
+    image: mysql:latest
+    ports:
+      - '3306:3306'
+    environment:
+      MYSQL_ROOT_PASSWORD: app
+      MYSQL_DATABASE: app
+      MYSQL_USER: app
+      MYSQL_PASSWORD: app
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  php:
+    container_name: php
+    build: php-fpm
+    ports:
+      - '9002:9000'
+    volumes:
+      - ../:/var/www/symfony:cached
+      - ./logs/symfony:/var/www/symfony/var/logs:cached
+    links:
+      - mysql
+
+  nginx:
+    container_name: nginx
+    build: nginx
+    ports:
+      - '8080:80'
+    links:
+      - php
+    volumes_from:
+      - php
+    volumes:
+      - ./logs/nginx/:/var/log/nginx:cached
+
+volumes:
+  mysql_data:

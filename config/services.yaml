@@ -28,3 +28,17 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+    App\Service\ProviderA:
+        arguments:
+            $client: '@http_client'
+        tags: [ 'app.task_provider' ]
+
+    App\Service\ProviderB:
+        arguments:
+            $client: '@http_client'
+        tags: [ 'app.task_provider' ]
+
+    App\Service\TaskProviderFactory:
+        arguments:
+            $providers: !tagged_iterator app.task_provider
