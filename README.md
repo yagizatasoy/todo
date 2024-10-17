@@ -25,14 +25,14 @@ To access:
 http://localhost:8080/
 ```
 
-To run setup migrate:
+To run setup migration:
 ```bash
-make setup-migrate
+make init-migration
 ```
 
-To run database migration:
+To execute database migration:
 ```bash
-make migrate
+make migration
 ```
 
 To insert mock data:
