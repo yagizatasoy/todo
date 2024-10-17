@@ -16,3 +16,5 @@
 
 # JetBrains IDE
 .idea
+
+/migrations

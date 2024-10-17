@@ -27,21 +27,23 @@
         </tr>
         </thead>
         <tbody>
-        {% for developer, days in assignments %}
-            {% for day, tasks in days %}
-                {% for task in tasks %}
-                    <tr>
-                        <td>{{ developer }}</td>
-                        <td>{{ day }}</td>
-                        <td>{{ task.getProviderName() }}</td>
-                        <td>{{ task.getTaskId() }}</td>
-                        <td>{{ task.getDifficulty() }}</td>
-                        <td>{{ task.getDuration() }}</td>
-                        <td>{{ task.getAssignedDuration() }}</td>
-                    </tr>
+        {% if assignments is not empty %}
+            {% for developer, days in assignments %}
+                {% for day, tasks in days %}
+                    {% for task in tasks %}
+                        <tr>
+                            <td>{{ developer }}</td>
+                            <td>{{ day }}</td>
+                            <td>{{ task.getProviderName() }}</td>
+                            <td>{{ task.getTaskId() }}</td>
+                            <td>{{ task.getDifficulty() }}</td>
+                            <td>{{ task.getDuration() }}</td>
+                            <td>{{ task.getAssignedDuration() }}</td>
+                        </tr>
+                    {% endfor %}
                 {% endfor %}
             {% endfor %}
-        {% endfor %}
+        {% endif %}
         </tbody>
     </table>
 </div>
